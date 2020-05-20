@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Clientes{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Lista de Clientes</h1>
+
+        <a href="{{ path('person_new') }}" class="btn btn-info" title="Inserir novo cliente"><i class="fas fa-user-plus"></i></a>
+
+        <table class="table mydatatable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tipo</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Nome/Razão Social</th>
+                    <th>E-mail</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for person in people %}
+                <tr>
+                    <td>{{ person.id }}</td>
+                    {% if person.personType == 'F' %}
+                        <td>Pessoa Física</td>
+                    {% else %}
+                        <td>Pessoa Jurídica</td>
+                    {% endif %}
+                    <td>{{ person.personIdentifier }}</td>
+                    <td>{{ person.personName }}</td>
+                    <td>{{ person.personEmail }}</td>
+                    <td>
+                        <a href="{{ path('person_show', {'id': person.id}) }}" title="Exibir dados do cliente"><i class="far fa-eye"></i></a>
+                        <a href="{{ path('person_edit', {'id': person.id}) }}" title="Editar dados do cliente"><i class="fas fa-user-edit"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Sem registros</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

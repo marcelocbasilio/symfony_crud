@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cliente{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Cliente</h1>
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ person.id }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo</th>
+                    {% if person.personType == 'F' %}
+                        <td>Pessoa Física</td>
+                    {% else %}
+                        <td>Pessoa Jurídica</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <th>CPF/CNPJ</th>
+                    <td>{{ person.personIdentifier }}</td>
+                </tr>
+                <tr>
+                    <th>Nome/Razão Social</th>
+                    <td>{{ person.personName }}</td>
+                </tr>
+                <tr>
+                    <th>E-mail</th>
+                    <td>{{ person.personEmail }}</td>
+                </tr>
+                <tr>
+                    <th>Criado em</th>
+                    <td>{{ person.createdAt ? person.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Alterado em</th>
+                    <td>{{ person.updatedAt ? person.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br><div class="btn-group" role="group" aria-label="...">
+            <a href="{{ path('person_index') }}" class="btn btn-primary" title="Voltar para lista de clientes"><i class="fas fa-undo"></i>&nbsp;<i class="fas fa-list-ol"></i></a>
+
+            <a href="{{ path('person_edit', {'id': person.id}) }}" class="btn btn-info" title="Editar dados do cliente"><i class="fas fa-user-edit"></i></a>
+
+            {{ include('person/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('person_delete', {'id': person.id}) }}" onsubmit="return confirm('Você está certo que quer excluir este cliente?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ person.id) }}">
+    <button class="btn btn-danger" title="Excluir cliente"><i class="fas fa-user-minus"></i></button>
+</form>

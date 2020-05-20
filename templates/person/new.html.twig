@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Novo Cliente{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        <h1>Criar novo Cliente</h1>
+
+            {{ include('person/_form.html.twig') }}
+
+            <a href="{{ path('person_index') }}" class="btn btn-primary" title="Voltar para lista"><i class="fas fa-undo">&nbsp;</i><i class="fas fa-list-ol"></i></a>
+        </div> <!-- esta div foi aberta em _form.html.twig -->
+    </div>
+{% endblock %}
